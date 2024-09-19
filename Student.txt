@@ -1,0 +1,51 @@
+-- Create table "Student"
+CREATE TABLE Student (
+STU_NUM char(6) NOT NULL ,
+STU_SName varchar(15) NOT NULL,
+STU_FName varchar(15) NOT NULL,
+STU_INITIAL char(1) NOT NULL,
+STU_STRDATE date NOT NULL,
+COURSE_CODE char(3),
+PROJ_NUM int(2),
+PRIMARY KEY (STU_NUM)
+);
+
+Insert data into table "Student"
+INSERT INTO Student (STU_NUM,STU_SName, STU_FName, STU_INITIAL, STU_STRDATE, COURSE_CODE , PROJ_NUM)
+VALUES ('01', 'Snow', 'John', 'E', '2014-04-05', '201' , '6'),
+		('02', 'Stark', 'Arya', 'C', '2017-07-12', '305', '11'),
+        ('03', 'Lannister', 'Jamie', 'C', '2012-09-05', '101', '2'),
+        ('04', 'Lannister', 'Cercei', 'J', '2012-09-05', '101', '2'),
+        ('05', 'Greyjoy', 'Theon', 'I', '2015-12-09', '402', '14'),
+        ('06', 'Tyrell', 'Margaery', 'Y', '2017-07-12','305', '10'),
+        ('07', 'Barathe', 'Tommen', 'R', '2019-06-13', '201', '5');
+
+-- Select all attributes for COURSE_CODE of 305
+Select * 
+From Student
+WHERE COURSE_CODE = '305'
+
+-- Update the COURSE_CODE for student number 07
+UPDATE Student
+SET COURSE_CODE = '304'
+WHERE STU_NUM = '07';
+
+-- Delete the row for Jamie Lannister
+DELETE FROM Student
+WHERE STU_FNAME='Jamie' 
+AND STU_SNAME='Lannister' 
+AND STU_STRDATE = '2012-09-05' 
+AND COURSE_CODE='101' 
+AND PROJ_NUM = '2' ;
+
+-- Update PROJ_NUM to 14 for students who started before 1 January 2016 and have a COURSE_CODE of 201 or higher
+UPDATE Student
+SET PROJ_NUM = '14'
+WHERE STU_STRDATE < '2016-01-01' 
+AND COURSE_CODE >= '201';
+
+-- Delete data inside the table
+DELETE from Student;
+
+-- Delete the table
+DROP table Student;
